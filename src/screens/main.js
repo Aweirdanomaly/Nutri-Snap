@@ -92,7 +92,7 @@ const App = ({navigation}) => {
      
 
       <View>
-         <Header style={styles.bar} backgroundColor={"#ff4500"} leftComponent={ButtonReset} centerComponent={{text:"NUTRISNAP",style:{color:"#fff",fontSize:30}}} />
+         <Header style={styles.bar} backgroundColor={"#E88B3C"} leftComponent={ButtonReset} centerComponent={{text:"NUTRISNAP",style:{color:"#fff",fontSize:30}}} />
          <ProgressBar title={"Calories"} max={2000} progress={Math.round(Calories)} />
          <ProgressBar title={"Carbs"} max={300} progress={Math.round(Carbs)} />
          <ProgressBar title={"Total Fat"} max={60} progress={Math.round(Fat)} />
