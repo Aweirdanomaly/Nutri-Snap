@@ -9,6 +9,7 @@ import Entry from '../components/Entry';
 import {Header,Button} from 'react-native-elements';
 import {AntDesign,FontAwesome} from "@expo/vector-icons";
 import { DataTable } from 'react-native-paper';
+import { Pedometer } from 'expo-sensors';
 
 const getData = async () =>{
 
@@ -23,7 +24,7 @@ const getData = async () =>{
 
 const App = ({navigation}) => {
     [Data, setData] = useState(null);
-
+    [steps,setSteps]=useState(0);
     [Calories,setCalories]=useState(0);
     [Carbs,setCarbs]=useState(0);
     [Fat,setFat]=useState(0);
@@ -64,6 +65,16 @@ const App = ({navigation}) => {
   useEffect(()=>{
     (async () => {
       setData(await getData());
+      const end = new Date();
+      const start = new Date();
+      start.setDate(end.getDate() - 1);
+      Pedometer.getStepCountAsync(start,end)
+      .then(result=>{
+        console.log(result);
+        setSteps(result.steps);
+      }).catch(error=>{
+        console.log(error);
+      })
     })();
 
   },[])
@@ -83,10 +94,10 @@ const App = ({navigation}) => {
       <View>
          <Header style={styles.bar} backgroundColor={"#ff4500"} leftComponent={ButtonReset} centerComponent={{text:"NUTRISNAP",style:{color:"#fff",fontSize:30}}} />
          <ProgressBar title={"Calories"} max={2000} progress={Math.round(Calories)} />
-         <ProgressBar title={"Carbs"} max={2000} progress={Math.round(Carbs)} />
-         <ProgressBar title={"Total Fat"} max={2000} progress={Math.round(Fat)} />
-         <ProgressBar title={"Protein"} max={2000} progress={Math.round(Protein)} />
-         
+         <ProgressBar title={"Carbs"} max={300} progress={Math.round(Carbs)} />
+         <ProgressBar title={"Total Fat"} max={60} progress={Math.round(Fat)} />
+         <ProgressBar title={"Protein"} max={50} progress={Math.round(Protein)} />
+         <ProgressBar title={"Calories Burned"} max={Math.round(Calories)} progress={steps*0.04} />
         <NavigationEvents onWillFocus={async ()=>{setData(await getData());}} />
         
         <ScrollView>
