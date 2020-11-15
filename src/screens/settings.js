@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import {StyleSheet,View,Text,Switch,Button,Alert,ScrollView,FlatList,SafeAreaView,} from 'react-native';
-
+import {FontAwesome} from "@expo/vector-icons";
 const DATA = [
   {
     id: 1,
@@ -56,11 +56,11 @@ const App = () => {
       </View>
       
       <View style = {styles.container}>
-                <button onClick = {decrementCount}> - </button>
-                <span> {count} </span>
-                <span>{theme}</span>
-                <button onClick = {incrementCount}> + </button>
-    </View>
+                <Button onClick = {decrementCount} title={"-"} />
+                <Text> {count} </Text>
+                <Text>{theme}</Text>
+                <Button onClick = {incrementCount} title={"+"} />
+     </View>
      
       <View>
         <Button
@@ -126,5 +126,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5',
   },
 });
+App.navigationOptions={
+  tabBarIcon: ({color,size})=>(
+    <FontAwesome name="gear" size={40} color="orange" />
+  ),
+  tabBarOptions:{
+    showLabel:false
+  }
+}
+
 
 export default App;
