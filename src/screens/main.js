@@ -97,7 +97,7 @@ const App = ({navigation}) => {
          <ProgressBar title={"Carbs"} max={300} progress={Math.round(Carbs)} />
          <ProgressBar title={"Total Fat"} max={60} progress={Math.round(Fat)} />
          <ProgressBar title={"Protein"} max={50} progress={Math.round(Protein)} />
-         <ProgressBar title={"Calories Burned"} max={Math.round(Calories)} progress={steps*0.04} />
+         <ProgressBar title={`Calories Burned (${steps} steps)`} max={Math.round(Calories)} progress={steps*0.04} />
         <NavigationEvents onWillFocus={async ()=>{setData(await getData());}} />
         
         <ScrollView>
