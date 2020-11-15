@@ -16,8 +16,10 @@ import {
 import { Camera } from 'expo-camera';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import upload from '../api/upload';
+import {AntDesign,FontAwesome} from "@expo/vector-icons";
 // nutricam
-export default ({navigation})=>{
+
+const cameraScreen=({navigation})=>{
     const [hasPermission, setHasPermission] = useState(null);
     const [cameraRef,setCameraRef]=useState(null);
     const [type, setType] = useState(Camera.Constants.Type.back);
@@ -159,3 +161,13 @@ export default ({navigation})=>{
         alignItems:"center"
       }
   });
+
+  cameraScreen.navigationOptions={
+    tabBarIcon: ({color,size})=>(
+      <FontAwesome name="camera" size={30} color={"orange"} />
+    ),
+    tabBarOptions:{
+      showLabel:false
+    }
+  }
+  export default cameraScreen;

@@ -4,8 +4,8 @@ import {View,StyleSheet,Text,SafeAreaView} from 'react-native'
 import { ProgressBar, Colors } from 'react-native-paper';
 export default ({title,progress,max})=>{
     return (
-        <SafeAreaView>
-            <ProgressBar style={styles.progress} progress={(progress/max)} color={Colors.orange50} />
+        <SafeAreaView style={styles.container}>
+            <ProgressBar style={styles.progress} progress={(progress/max)} color={"#ffa354"} />
             <Text style={styles.text}>{title} {progress}/{max}</Text>
         </SafeAreaView>
     );
@@ -15,13 +15,17 @@ const styles=StyleSheet.create({
     text:{
         color: "#E88B3C",
         fontSize:20,
-        marginHorizontal:10
+        marginHorizontal:10,
+        alignSelf:'center'
     },
     progress:{
         width:360,
         height:40,
-        borderRadius:50
-
+        borderRadius:50,
+        alignSelf:'center'
+    },
+    container:{
+        marginVertical:13,
     }
 })
 /*
