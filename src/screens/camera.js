@@ -37,7 +37,7 @@ export default ({navigation})=>{
     }
   
     apiReq=async (base64)=>{
-        
+     //   AsyncStorage.removeItem("foods");
      setError(null);
       var params = new URLSearchParams();
       params.append('image',base64);
@@ -47,21 +47,26 @@ export default ({navigation})=>{
         setLoading(false);
         if(response.data["result"]!=undefined){
             const res=await AsyncStorage.getItem('foods');
-            console.log(res);
-            res2=JSON.parse(res);
+            //console.log(res);
+            var res2=JSON.parse(res);
             if(!res2){
                 res2=[]
             }
+            //console.log(response.data["result"]);
             res2.push(response.data["result"]);
+          //  console.log(res2);
             await AsyncStorage.setItem('foods',JSON.stringify(res2));
             setLoading(false);
             navigation.navigate("home",{newEntry:true});
           //setData({type:response.data["result"]["type"],fruit:response.data["result"]["fruit"]})
         }else{
+          //console.log(JSON.stringify(response));
           if(response.data["error"]!=undefined){
             setError(response.data["error"]);
+          //  console.log("Error")
           }else{
             setError("An unknown error happened on the server");
+            //console.log("Erro2");
           }
           //setData("There was a server error")
         }
